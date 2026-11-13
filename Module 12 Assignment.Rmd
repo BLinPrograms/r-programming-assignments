@@ -1,0 +1,69 @@
+---
+title: "Introduction to R Markdown"
+author: "Benedict Lin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Introduction
+
+R Markdown allows us to combine R code, text, and visualizations into one document. Instead of having separate files for our code and written explanations, we can put everything together and generate a report. This is useful when we want to show our work and explain what we did at the same time.
+
+# Markdown and LaTeX
+
+Markdown gives us a simple way to format text and organize information. We can use hashtags for headings, asterisks to emphasize text, and hyphens to create lists.
+We can also use LaTeX to include mathematical expressions in our documents. For example, we can write an equation inline like this: $\alpha + \beta = \gamma$.
+We can also display an equation separately:
+
+$$
+y = mx + b
+$$
+
+This is an example of a linear equation that represents the relationship between two variables.
+
+# Loading Data and Libraries
+
+First, we can load the ggplot2 library and the mtcars dataset. We will use this dataset for the rest of the assignment to practice working with R Markdown.
+
+```{r setup, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+data(mtcars)
+
+head(mtcars)
+```
+
+# Summary Statistics
+
+Now we can look at some summary statistics from the dataset. The summary function gives us information about the different variables, including their minimum, maximum, median, and mean values.
+
+```{r summary}
+summary(mtcars)
+
+mean(mtcars$mpg)
+```
+
+This gives us a general idea of what the dataset contains and helps us understand the values before creating a visualization.
+
+# Data Visualization
+
+We can also use ggplot2 to create visualizations directly inside our R Markdown document. For this example, we will compare vehicle weight and miles per gallon using a scatterplot.
+
+```{r visualization, fig.width=7, fig.height=5}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "steelblue", size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Vehicle Weight vs. Fuel Efficiency",
+    x = "Weight (1000 lbs)",
+    y = "Miles Per Gallon"
+  ) +
+  theme_minimal()
+```
+
+Looking at the visualization, we can see that vehicles with higher weights generally have lower fuel efficiency. The trend line helps show the negative relationship between these two variables.
+
+# Conclusion
+
+Overall, this assignment helped me understand how R Markdown works and how we can use it to combine code, text, and visualizations into one document. I found it useful that we can write explanations alongside our code instead of having to create a separate report. I also learned how Markdown formatting and LaTeX can be used to organize information and include mathematical expressions. Knitting the document allows us to execute our code and generate an HTML report with the results included. I can see how R Markdown would be useful for future assignments because it makes our analysis easier to organize, present, and reproduce.
+```
